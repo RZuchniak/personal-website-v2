@@ -23,6 +23,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.0.0",
+		"camera-controls": "^2.10.0",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
@@ -41,5 +42,11 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"dependencies": {
+		"@threlte/core": "^8.0.1",
+		"@threlte/extras": "^9.1.0",
+		"@types/three": "^0.174.0",
+		"three": "^0.174.0"
 	}
 }
