@@ -16,6 +16,7 @@
 	let zooming = $state(false);
 	let display = $state(false);
 	let timer = $state(0);
+	let hover = $state(false);
 
 	const globalPosition = $state({
 		x: 0,
@@ -36,6 +37,7 @@
 	const scale = new Spring(1);
 	let models = loadModels();
 	const texture = models.jupiterTexture;
+	const image = models.image;
 
 	const viewPlanet = (location: Vector3) => {
 		if (zooming) return;
@@ -126,14 +128,35 @@
 	scale={scale.current}
 	onpointerenter={() => {
 		scale.target = 1.0;
+		hover = true;
 	}}
 	onclick={() => {
 		viewPlanet(new Vector3(50, 0, 0));
 	}}
 	onpointerleave={() => {
 		scale.target = 1.0;
+		hover = false;
 	}}
 >
+	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
+		{#snippet content()}
+			{#if hover}
+				<div class="relative mx-auto h-32 w-32">
+					<!-- Circular image container with vignette -->
+					<div class="absolute inset-0 overflow-hidden rounded-full">
+						<img src={image} alt="image" class="h-full w-full object-cover" />
+						<!-- Vignette overlay -->
+						<div class="absolute inset-0 rounded-full shadow-[inset_0_0_50px_20px_rgba(0,0,0,1)]" />
+					</div>
+
+					<!-- Optional: Glowing outer ring -->
+					<div
+						class="border-neon-blue absolute inset-0 rounded-full border-2 opacity-0 shadow-[0_0_20px_5px_rgba(0,255,255,0)] transition-opacity duration-300 hover:opacity-100"
+					/>
+				</div>
+			{/if}
+		{/snippet}
+	</CssObject>
 	<T.SphereGeometry args={[20, 64, 64]} />
 	{#if $texture}
 		<T.MeshStandardMaterial map={$texture} roughness={0.8} metalness={0.1} bumpScale={0.05} />

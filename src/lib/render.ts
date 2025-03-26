@@ -3,6 +3,7 @@
 	import { T, useTask, useThrelte, useLoader } from '@threlte/core';
 	import { interactivity } from '@threlte/extras';
 	import { Spring } from 'svelte/motion';
+    import image from '../favicon.png';
 	import * as THREE from 'three';
 
 export function loadModels() {
@@ -14,6 +15,7 @@ export function loadModels() {
 
     return {
         neptuneTexture,
-        jupiterTexture
+        jupiterTexture,
+        image
     }
 }
