@@ -12,6 +12,11 @@
 
 	let { element }: { element: HTMLElement } = $props();
 
+	let zoomed = $state(false);
+	let zooming = $state(false);
+	let display = $state(false);
+	let timer = $state(0);
+
 	const globalPosition = $state({
 		x: 0,
 		y: 0,
@@ -33,9 +38,19 @@
 	const texture = models.jupiterTexture;
 
 	const viewPlanet = (location: Vector3) => {
-		globalPosition.x = location.x + 20;
-		globalPosition.y = location.y;
-		globalPosition.z = location.z + 70;
+		if (zooming) return;
+		if (!zoomed) {
+			globalPosition.x = location.x + 20;
+			globalPosition.y = location.y;
+			globalPosition.z = location.z + 70;
+			zooming = true;
+		} else {
+			globalPosition.x = 0;
+			globalPosition.y = 0;
+			globalPosition.z = 200;
+			zooming = true;
+			display = false;
+		}
 	};
 
 	let rotation = $state(0);
@@ -58,6 +73,15 @@
 				invalidate();
 			}
 			rotation += delta / 5;
+			if (zooming) {
+				timer += delta;
+				if (timer > 0.85) {
+					timer = 0;
+					zooming = false;
+					zoomed = !zoomed;
+					if (zoomed) display = true;
+				}
+			}
 		},
 		{ autoInvalidate: false }
 	);
@@ -101,7 +125,7 @@
 	position={[50, 0, 0]}
 	scale={scale.current}
 	onpointerenter={() => {
-		scale.target = 1.5;
+		scale.target = 1.0;
 	}}
 	onclick={() => {
 		viewPlanet(new Vector3(50, 0, 0));
@@ -110,16 +134,19 @@
 		scale.target = 1.0;
 	}}
 >
-	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
-		{#snippet content()}
-			<MosaicDescription />
-		{/snippet}
-	</CssObject>
 	<T.SphereGeometry args={[20, 64, 64]} />
 	{#if $texture}
 		<T.MeshStandardMaterial map={$texture} roughness={0.8} metalness={0.1} bumpScale={0.05} />
 	{/if}
 </T.Mesh>
+
+<CssObject center={[0.5, 0.5]} position={[95, 0, 0]}>
+	{#snippet content()}
+		{#if display}
+			<MosaicDescription />
+		{/if}
+	{/snippet}
+</CssObject>
 
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
