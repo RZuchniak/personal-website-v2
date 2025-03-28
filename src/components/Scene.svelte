@@ -42,7 +42,7 @@
 	const viewPlanet = (location: Vector3) => {
 		if (zooming) return;
 		if (!zoomed) {
-			globalPosition.x = location.x + 20;
+			globalPosition.x = location.x + 25;
 			globalPosition.y = location.y;
 			globalPosition.z = location.z + 70;
 			zooming = true;
@@ -53,6 +53,10 @@
 			zooming = true;
 			display = false;
 		}
+	};
+
+	const rotationToheight = (rotation: number) => {
+		return Math.sin(rotation) * 25;
 	};
 
 	let rotation = $state(0);
@@ -74,7 +78,7 @@
 			if (controls.update(delta)) {
 				invalidate();
 			}
-			rotation += delta / 5;
+			rotation += delta;
 			if (zooming) {
 				timer += delta;
 				if (timer > 0.85) {
@@ -138,21 +142,14 @@
 		hover = false;
 	}}
 >
-	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
+	<CssObject center={[0.5, 0.5]} position={[25, rotationToheight(rotation), 0]}>
 		{#snippet content()}
 			{#if hover}
-				<div class="relative mx-auto h-32 w-32">
+				<div class="relative -z-10 mx-auto h-16 w-16">
 					<!-- Circular image container with vignette -->
 					<div class="absolute inset-0 overflow-hidden rounded-full">
 						<img src={image} alt="image" class="h-full w-full object-cover" />
-						<!-- Vignette overlay -->
-						<div class="absolute inset-0 rounded-full shadow-[inset_0_0_50px_20px_rgba(0,0,0,1)]" />
 					</div>
-
-					<!-- Optional: Glowing outer ring -->
-					<div
-						class="border-neon-blue absolute inset-0 rounded-full border-2 opacity-0 shadow-[0_0_20px_5px_rgba(0,255,255,0)] transition-opacity duration-300 hover:opacity-100"
-					/>
 				</div>
 			{/if}
 		{/snippet}
@@ -163,7 +160,7 @@
 	{/if}
 </T.Mesh>
 
-<CssObject center={[0.5, 0.5]} position={[95, 0, 0]}>
+<CssObject center={[0.5, 0.5]} position={[100, 0, 0]}>
 	{#snippet content()}
 		{#if display}
 			<MosaicDescription />

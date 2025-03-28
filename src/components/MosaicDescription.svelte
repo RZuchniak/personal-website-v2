@@ -1,19 +1,17 @@
-<div class="sci-fi-fade">
-	<div class="flex items-center justify-center bg-black p-4">
+<div class="sci-fi-fade h-120">
+	<div class="flex items-center justify-center bg-black">
 		<div
-			class="w-full max-w-md overflow-hidden rounded-lg border border-gray-800 bg-gray-900/90 shadow-[0_0_15px_rgba(0,255,255,0.3)]"
+			class="h-full w-full overflow-hidden rounded-lg border shadow-[0_0_15px_rgba(255,255,255,0.3)]"
 		>
 			<!-- Header -->
-			<div class="border-b border-gray-700 bg-gray-800 p-3">
+			<div class="border-b p-3">
 				<!-- ... rest of your header code ... -->
 			</div>
 
 			<!-- Textbox -->
-			<div class="relative p-4">
-				<textarea
-					class="h-40 w-full resize-none border border-gray-700 bg-black p-3 font-mono text-green-400 caret-[#0ff0fc] shadow-[inset_0_0_10px_rgba(0,255,255,0.1)] outline-none focus:border-[#0ff0fc] focus:shadow-[inset_0_0_15px_rgba(0,255,255,0.3),0_0_10px_rgba(0,255,255,0.2)]"
-					placeholder="ENTER COMMAND..."
-				></textarea>
+			<div class="relative h-120 w-full resize-none bg-black p-4 flex">
+				<h class="w-full resize-none bg-black p-3 font-extrabold text-white text-center text-3xl">MOSAIC</h>
+                <p></p>
 				<!-- ... corner elements ... -->
 			</div>
 		</div>
@@ -32,7 +30,7 @@
 			transform: scale(0.95);
 		}
 		100% {
-			opacity: 1;
+			opacity: 0.8;
 			filter: brightness(1) saturate(1);
 			transform: scale(1);
 		}

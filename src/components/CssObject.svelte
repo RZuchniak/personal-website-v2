@@ -14,7 +14,7 @@
 	let element: HTMLElement | undefined = $state();
 </script>
 
-<div bind:this={element}>
+<div bind:this={element} class="w-5/12">
 	{@render content?.()}
 </div>
 
