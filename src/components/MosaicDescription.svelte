@@ -1,4 +1,4 @@
-<div class="sci-fi-fade h-120">
+<div class="sci-fi-fade h-120 w-3/4">
 	<div class="flex items-center justify-center bg-black">
 		<div
 			class="h-full w-full overflow-hidden rounded-lg border shadow-[0_0_15px_rgba(255,255,255,0.3)]"
@@ -9,9 +9,16 @@
 			</div>
 
 			<!-- Textbox -->
-			<div class="relative h-120 w-full resize-none bg-black p-4 flex">
-				<h class="w-full resize-none bg-black p-3 font-extrabold text-white text-center text-3xl">MOSAIC</h>
-                <p></p>
+			<div class="relative flex h-120 w-full resize-none flex-col bg-black p-4">
+				<h class="w-full resize-none bg-black p-3 text-center text-3xl font-extrabold text-white"
+					>MOSAIC</h
+				>
+				<p
+					class="border-opacity-50 h-full w-full rounded-md border-white p-3 text-center text-xl text-white"
+				>
+					Mosaic is a collaborative drawing application that allows users to edit a 1000x1000 grid
+					of pixels in real-time.
+				</p>
 				<!-- ... corner elements ... -->
 			</div>
 		</div>

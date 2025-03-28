@@ -142,13 +142,17 @@
 		hover = false;
 	}}
 >
-	<CssObject center={[0.5, 0.5]} position={[25, rotationToheight(rotation), 0]}>
+	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if hover}
-				<div class="relative -z-10 mx-auto h-16 w-16">
+				<div class="relative h-12 w-12">
 					<!-- Circular image container with vignette -->
 					<div class="absolute inset-0 overflow-hidden rounded-full">
 						<img src={image} alt="image" class="h-full w-full object-cover" />
+						<div
+							class="absolute inset-0
+           [mask-image:radial-gradient(circle_at_center,white_30%,transparent_70%)]"
+						></div>
 					</div>
 				</div>
 			{/if}
@@ -160,7 +164,7 @@
 	{/if}
 </T.Mesh>
 
-<CssObject center={[0.5, 0.5]} position={[100, 0, 0]}>
+<CssObject center={[0.5, 0.5]} position={[110, 0, 0]}>
 	{#snippet content()}
 		{#if display}
 			<MosaicDescription />
