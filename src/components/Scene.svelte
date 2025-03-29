@@ -7,8 +7,10 @@
 	import { PerspectiveCamera, TextureLoader, Vector3 } from 'three';
 	import { loadModels } from '../lib/render';
 	import { CSS2DRenderer } from 'three/examples/jsm/Addons.js';
-	import MosaicDescription from './MosaicDescription.svelte';
+	import ProjectDescription from './ProjectDescription.svelte';
 	import CssObject from './CssObject.svelte';
+	import Planet from './Planet.svelte';
+	import { PI } from 'three/tsl';
 
 	let { element }: { element: HTMLElement } = $props();
 
@@ -21,12 +23,12 @@
 	const globalPosition = $state({
 		x: 0,
 		y: 0,
-		z: 200
+		z: 400
 	});
 
 	const { autoRenderTask, dom, invalidate, size, scene } = useThrelte();
 
-	const camera = new PerspectiveCamera();
+	const camera = new PerspectiveCamera(30);
 	let controls: CC = new CameraControl(dom, camera);
 	controls.enabled = false;
 
@@ -42,20 +44,20 @@
 	const viewPlanet = (location: Vector3) => {
 		if (zooming) return;
 		if (!zoomed) {
-			globalPosition.x = location.x + 25;
+			globalPosition.x = location.x + 30;
 			globalPosition.y = location.y;
-			globalPosition.z = location.z + 70;
+			globalPosition.z = location.z + 140;
 			zooming = true;
 		} else {
 			globalPosition.x = 0;
 			globalPosition.y = 0;
-			globalPosition.z = 200;
+			globalPosition.z = 400;
 			zooming = true;
 			display = false;
 		}
 	};
 
-	const rotationToheight = (rotation: number) => {
+	const rotationToHeight = (rotation: number) => {
 		return Math.sin(rotation) * 25;
 	};
 
@@ -79,6 +81,9 @@
 				invalidate();
 			}
 			rotation += delta;
+			if (rotation > Math.PI * 2) {
+				rotation = 0;
+			}
 			if (zooming) {
 				timer += delta;
 				if (timer > 0.85) {
@@ -128,21 +133,22 @@
 
 <T.Mesh
 	rotation.y={rotation}
-	position={[50, 0, 0]}
+	position={[50, 30, 0]}
 	scale={scale.current}
 	onpointerenter={() => {
 		scale.target = 1.0;
-		hover = true;
+		hover = !zoomed && !zooming;
 	}}
 	onclick={() => {
-		viewPlanet(new Vector3(50, 0, 0));
+		viewPlanet(new Vector3(50, 30, 0));
+		hover = false;
 	}}
 	onpointerleave={() => {
 		scale.target = 1.0;
 		hover = false;
 	}}
 >
-	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
+	<CssObject center={[0.5, 0.5]} position={[0, rotationToHeight(rotation + Math.PI / 2), 25]}>
 		{#snippet content()}
 			{#if hover}
 				<div class="relative h-12 w-12">
@@ -164,14 +170,25 @@
 	{/if}
 </T.Mesh>
 
-<CssObject center={[0.5, 0.5]} position={[110, 0, 0]}>
+<CssObject center={[0.5, 0.5]} position={[110, 30, 0]}>
 	{#snippet content()}
 		{#if display}
-			<MosaicDescription />
+			<ProjectDescription />
 		{/if}
 	{/snippet}
 </CssObject>
 
+<Planet
+	position={[0, 0, 0]}
+	{rotation}
+	{zoomed}
+	{zooming}
+	{viewPlanet}
+	{rotationToHeight}
+	{texture}
+	{image}
+></Planet>
+
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
-<Stars radius={200} factor={10} />
+<Stars radius={750} factor={30} />
