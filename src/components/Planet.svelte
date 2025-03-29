@@ -21,7 +21,7 @@
 		rotation: number;
 		zoomed: boolean;
 		zooming: boolean;
-		viewPlanet: (location: Vector3) => void;
+		viewPlanet: (location: [number, number, number]) => void;
 		rotationToHeight: (rotation: number) => number;
 		texture: AsyncWritable<Texture>;
 		position: [number, number, number];
@@ -42,8 +42,15 @@
 		hover = !zoomed && !zooming;
 	}}
 	onclick={() => {
-		viewPlanet(new Vector3(50, 30, 0));
-		hover = false;
+		if (!zoomed && !zooming) {
+			hover = false;
+			setTimeout(() => {
+				display = true;
+			}, 850);
+		} else {
+			display = false;
+		}
+		viewPlanet(position);
 	}}
 	onpointerleave={() => {
 		scale.target = 1.0;
@@ -72,7 +79,7 @@
 	{/if}
 </T.Mesh>
 
-<CssObject center={[0.5, 0.5]} position={[110, 30, 0]}>
+<CssObject center={[0.5, 0.5]} position={[position[0] + 50, position[1], position[2]]}>
 	{#snippet content()}
 		{#if display}
 			<ProjectDescription />
