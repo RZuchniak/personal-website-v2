@@ -1,0 +1,6 @@
+- project name on hover using svelte typewriter
+- rework orbits
+- gifs on zoom in with scanline effect
+- componentize adding text
+- custom links with images
+- startup modal

@@ -14,7 +14,7 @@
 	let element: HTMLElement | undefined = $state();
 </script>
 
-<div bind:this={element} class="inline-flex">
+<div bind:this={element} class="inline-flex justify-center">
 	{@render content?.()}
 </div>
 

@@ -9,6 +9,7 @@
 	import type { AsyncWritable } from '@threlte/core';
 	import whirl from './whirl_screenshot.png';
 	import Preview from './Preview.svelte';
+	import TypeWriter from 'svelte-typewriter';
 
 	let {
 		rotation,
@@ -73,6 +74,13 @@
 					</div>
 				</div>
 			{/if}
+		{/snippet}
+	</CssObject>
+	<CssObject center{[0.5, 0.5]} position={[0, 0, 0]}>
+		{#snippet content()}
+			<div>
+				<p>Hello WOrld</p>
+			</div>
 		{/snippet}
 	</CssObject>
 	<!----
