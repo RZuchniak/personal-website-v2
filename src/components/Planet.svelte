@@ -7,6 +7,8 @@
 	import ProjectDescription from './ProjectDescription.svelte';
 	import type { Texture } from 'three';
 	import type { AsyncWritable } from '@threlte/core';
+	import whirl from './whirl_screenshot.png';
+	import Preview from './Preview.svelte';
 
 	let {
 		rotation,
@@ -60,7 +62,7 @@
 	<CssObject center={[0.5, 0.5]} position={[0, rotationToHeight(rotation + Math.PI / 2), 25]}>
 		{#snippet content()}
 			{#if hover}
-				<div class="relative h-12 w-12">
+				<div class="relative flex h-12 w-12 items-center justify-center align-middle">
 					<!-- Circular image container with vignette -->
 					<div class="absolute inset-0 overflow-hidden rounded-full">
 						<img src={image} alt="image" class="h-full w-full object-cover" />
@@ -70,6 +72,22 @@
 						></div>
 					</div>
 				</div>
+			{/if}
+		{/snippet}
+	</CssObject>
+	<!----
+	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
+		{#snippet content()}
+			<div class="relative h-64">
+				<img src={whirl} alt="image" class="h-full w-full object-cover" />
+			</div>
+		{/snippet}
+	</CssObject>
+    -->
+	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
+		{#snippet content()}
+			{#if display}
+				<Preview />
 			{/if}
 		{/snippet}
 	</CssObject>
