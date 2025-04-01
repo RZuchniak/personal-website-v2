@@ -133,6 +133,8 @@
 	{viewPlanet}
 	{rotationToHeight}
 	{texture}
+	projectName="PACE"
+	projectDescription="Pace is a first person puzzle game that sees"
 	{image}
 ></Planet>
 

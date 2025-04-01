@@ -3,7 +3,7 @@
 </script>
 
 <div class="vignette-container flex h-1/2 w-1/2 justify-center justify-items-center">
-	<img src={image} class="source-image h-full w-full object-cover" />
+	<img src={image} class="source-image animate-fade-in h-full w-full object-cover" />
 	<div class="scanline-effect pointer-events-none absolute inset-0"></div>
 </div>
 

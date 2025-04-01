@@ -1,3 +1,10 @@
+<script lang="ts">
+	let {
+		projectName = 'Mosaic',
+		projectDescription = 'Mosaic is a collaborative drawing application that allows users to edit a 1000×1000 grid of pixels in real-time.'
+	} = $props();
+</script>
+
 <div class="sci-fi-fade h-120 w-[40vw]">
 	<div class="flex items-center justify-center">
 		<div
@@ -6,13 +13,14 @@
 			<!-- Main Content -->
 			<div class="relative flex h-120 w-full flex-col overflow-hidden p-4">
 				<!-- Minimal title -->
-				<h1 class="w-full p-3 text-center text-3xl font-light tracking-wider text-white">MOSAIC</h1>
+				<h1 class="w-full p-3 text-center text-3xl font-light tracking-wider text-white">
+					{projectName}
+				</h1>
 
 				<!-- Description container -->
 				<div class="flex h-full items-center justify-center rounded-md border border-white/10 p-6">
 					<p class="max-w-md text-center text-lg leading-relaxed text-white/70">
-						Mosaic is a collaborative drawing application that allows users to edit a 1000×1000 grid
-						of pixels in real-time.
+						{projectDescription}
 					</p>
 				</div>
 

@@ -10,7 +10,7 @@
 	import whirl from './whirl_screenshot.png';
 	import Preview from './Preview.svelte';
 	import TypeWriter from 'svelte-typewriter';
-
+	import Tool from './Tool.svelte';
 	let {
 		rotation,
 		zoomed,
@@ -19,7 +19,9 @@
 		rotationToHeight,
 		texture,
 		position,
-		image
+		image,
+		projectName = undefined,
+		projectDescription = undefined
 	}: {
 		rotation: number;
 		zoomed: boolean;
@@ -29,6 +31,8 @@
 		texture: AsyncWritable<Texture>;
 		position: [number, number, number];
 		image: string;
+		projectName?: string;
+		projectDescription?: string;
 	} = $props();
 
 	let scale = new Spring(1);
@@ -60,38 +64,16 @@
 		hover = false;
 	}}
 >
-	<CssObject center={[0.5, 0.5]} position={[0, rotationToHeight(rotation + Math.PI / 2), 25]}>
+	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if hover}
-				<div class="relative flex h-12 w-12 items-center justify-center align-middle">
-					<!-- Circular image container with vignette -->
-					<div class="absolute inset-0 overflow-hidden rounded-full">
-						<img src={image} alt="image" class="h-full w-full object-cover" />
-						<div
-							class="absolute inset-0
-           [mask-image:radial-gradient(circle_at_center,white_30%,transparent_70%)]"
-						></div>
-					</div>
-				</div>
+				<TypeWriter>
+					<h class="flex items-center text-3xl font-bold"> {projectName || 'MOSAIC'} </h>
+				</TypeWriter>
 			{/if}
 		{/snippet}
 	</CssObject>
-	<CssObject center{[0.5, 0.5]} position={[0, 0, 0]}>
-		{#snippet content()}
-			<div>
-				<p>Hello WOrld</p>
-			</div>
-		{/snippet}
-	</CssObject>
-	<!----
-	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
-		{#snippet content()}
-			<div class="relative h-64">
-				<img src={whirl} alt="image" class="h-full w-full object-cover" />
-			</div>
-		{/snippet}
-	</CssObject>
-    -->
+	<Tool {rotation} {hover} {rotationToHeight} {image} />
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if display}
@@ -104,11 +86,13 @@
 		<T.MeshStandardMaterial map={$texture} roughness={0.8} metalness={0.1} bumpScale={0.05} />
 	{/if}
 </T.Mesh>
-
+{#if hover}
+	<T.DirectionalLight position={[position[0], position[1], position[2] + 50]} intensity={0.1} />
+{/if}
 <CssObject center={[0.5, 0.5]} position={[position[0] + 50, position[1], position[2]]}>
 	{#snippet content()}
 		{#if display}
-			<ProjectDescription />
+			<ProjectDescription {projectName} {projectDescription} />
 		{/if}
 	{/snippet}
 </CssObject>
