@@ -15,6 +15,7 @@
 		rotation,
 		zoomed,
 		zooming,
+		scale: inputScale = 1,
 		viewPlanet,
 		rotationToHeight,
 		texture,
@@ -26,6 +27,7 @@
 		rotation: number;
 		zoomed: boolean;
 		zooming: boolean;
+		scale?: number;
 		viewPlanet: (location: [number, number, number]) => void;
 		rotationToHeight: (rotation: number) => number;
 		texture: AsyncWritable<Texture>;
@@ -35,7 +37,7 @@
 		projectDescription?: string;
 	} = $props();
 
-	let scale = new Spring(1);
+	let scale = new Spring(inputScale);
 	let hover = $state(false);
 	let display = $state(false);
 </script>
@@ -45,7 +47,6 @@
 	{position}
 	scale={scale.current}
 	onpointerenter={() => {
-		scale.target = 1.0;
 		hover = !zoomed && !zooming;
 	}}
 	onclick={() => {
@@ -60,15 +61,16 @@
 		viewPlanet(position);
 	}}
 	onpointerleave={() => {
-		scale.target = 1.0;
 		hover = false;
 	}}
 >
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if hover}
-				<TypeWriter>
-					<h class="flex items-center text-3xl font-bold"> {projectName || 'MOSAIC'} </h>
+				<TypeWriter keepCursorOnFinish>
+					<h class="flex items-center text-center text-2xl font-bold break-words">
+						{projectName || 'MOSAIC'}
+					</h>
 				</TypeWriter>
 			{/if}
 		{/snippet}
@@ -86,9 +88,6 @@
 		<T.MeshStandardMaterial map={$texture} roughness={0.8} metalness={0.1} bumpScale={0.05} />
 	{/if}
 </T.Mesh>
-{#if hover}
-	<T.DirectionalLight position={[position[0], position[1], position[2] + 50]} intensity={0.1} />
-{/if}
 <CssObject center={[0.5, 0.5]} position={[position[0] + 50, position[1], position[2]]}>
 	{#snippet content()}
 		{#if display}

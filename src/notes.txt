@@ -4,3 +4,10 @@
 - componentize adding text
 - custom links with images
 - startup modal
+
+Projects:
+    Mosaic
+    Pace
+    Mound
+    Ignite
+

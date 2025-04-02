@@ -36,7 +36,7 @@
 		width: 100%;
 		height: auto;
 		mask-image: radial-gradient(
-			circle,
+			ellipse,
 			black 0%,
 			rgba(0, 0, 0, 0.7) calc(var(--gradient-expand) - 30%),
 			transparent var(--gradient-expand)
@@ -45,13 +45,13 @@
 	}
 
 	.scanline-effect {
-		background: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+		background: linear-gradient(rgba(255, 255, 255, 0.1) 2px, transparent 1px);
 		background-size: 100% 4px;
 		animation: scanline 2s linear infinite;
 		mask-image: radial-gradient(
-			circle,
+			ellipse,
 			black 0%,
-			rgba(0, 0, 0, 0.7) calc(var(--gradient-expand) - 30%),
+			rgba(0, 0, 0, 0.8) calc(var(--gradient-expand) - 30%),
 			transparent var(--gradient-expand)
 		);
 		animation: expand-gradient 0.5s cubic-bezier(0.1, 0, 0.8, 1) forwards;

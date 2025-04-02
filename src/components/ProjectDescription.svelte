@@ -2,7 +2,7 @@
 	let {
 		projectName = 'Mosaic',
 		projectDescription = 'Mosaic is a collaborative drawing application that allows users to edit a 1000×1000 grid of pixels in real-time.'
-	} = $props();
+	}: { projectName?: string; projectDescription?: string } = $props();
 </script>
 
 <div class="sci-fi-fade h-120 w-[40vw]">

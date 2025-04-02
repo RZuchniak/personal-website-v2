@@ -128,26 +128,58 @@
 <Planet
 	position={[0, 0, 0]}
 	rotation={rotation * 2}
+	scale={1.2}
 	{zoomed}
 	{zooming}
 	{viewPlanet}
 	{rotationToHeight}
 	{texture}
 	projectName="PACE"
-	projectDescription="Pace is a first person puzzle game that sees"
+	projectDescription="Pace is a first person puzzle game that sees the player solving jigsaw puzzles on an abandoned space station. Built entirely in Godot, I was able to implement a custom portal system similar to that of Portal 1, allowing for seamless teleportation."
 	{image}
 ></Planet>
 
 <Planet
-	position={[80, 30, 0]}
+	position={[-120, 50, -50]}
 	rotation={rotation * 4}
 	{zoomed}
 	{zooming}
 	{viewPlanet}
 	{rotationToHeight}
 	{texture}
+	projectName="MOSAIC"
+	projectDescription="Based off of r/Place, Mosaic allows users to place individual tiles on a board to slowly create art. Built using React, along with Socket.io and PostgreSQL for the back-end"
 	{image}
+></Planet>
+
+<Planet
+	position={[-135, -40, 30]}
+	rotation={rotation * 4}
+	{zoomed}
+	{zooming}
+	{viewPlanet}
+	{rotationToHeight}
+	{texture}
+	projectName="MOUND"
+	projectDescription="Developed for HacktheHill, Mound is a peer-to-peer distributed file sharing system. Upon connecting to a network, any files uploaded are automatically chunked and shared with all peers, which allows for robust downloads that do not rely on a single server, meaning in the event of a disconnection, the file can still be downloaded from other peers.
+	I helped to develop the Electron front end, and helped to connect it to the cli being run as a child process through an IPC connection."
+	{image}
+></Planet>
+
+<Planet
+	position={[125, 40, 60]}
+	rotation={rotation * 4}
+	{zoomed}
+	{zooming}
+	scale={1.2}
+	{viewPlanet}
+	{rotationToHeight}
+	{texture}
+	{image}
+	projectName="GRAPHICS ENGINE"
+	projectDescription="A graphics engine built entirely in Rust and leveraging the wgpu library. "
+
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
-<Stars radius={750} factor={30} />
+<Stars radius={750} factor={35} />
