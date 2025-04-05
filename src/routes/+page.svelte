@@ -13,8 +13,8 @@
 <div id="css-renderer-target" bind:this={element} />
 
 <div id="main">
-	<Dialog.Root>
-		<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Edit Profile</Dialog.Trigger>
+	<Dialog.Root open={true}>
+		<Dialog.Overlay class="bg-black/90"></Dialog.Overlay>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
 				<Dialog.Title>Edit profile</Dialog.Title>
