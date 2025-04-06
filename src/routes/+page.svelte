@@ -8,32 +8,34 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+
+	let isopen = $state(true);
 </script>
 
 <div id="css-renderer-target" bind:this={element} />
 
 <div id="main">
-	<Dialog.Root open={true}>
-		<Dialog.Overlay class="bg-black/90"></Dialog.Overlay>
+	<Dialog.Root open={isopen}>
+		<Dialog.Overlay class="bg-black/100"></Dialog.Overlay>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header>
-				<Dialog.Title>Edit profile</Dialog.Title>
+				<Dialog.Title>Welcome to my Portfolio!</Dialog.Title>
 				<Dialog.Description>
-					Make changes to your profile here. Click save when you're done.
+					Click on a planet to view details about each project. Click on it again to go back. If you
+					are on mobile or are unable to see any planets click the link below to be taken to my
+					regular portolio.
 				</Dialog.Description>
 			</Dialog.Header>
-			<div class="grid gap-4 py-4">
-				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="name" class="text-right">Name</Label>
-					<Input id="name" value="Pedro Duarte" class="col-span-3" />
-				</div>
-				<div class="grid grid-cols-4 items-center gap-4">
-					<Label for="username" class="text-right">Username</Label>
-					<Input id="username" value="@peduarte" class="col-span-3" />
-				</div>
-			</div>
 			<Dialog.Footer>
-				<Button type="submit">Save changes</Button>
+				<Button type="button" on:click={() => (window.location.href = 'https://google.com')}
+					>Try other site</Button
+				>
+				<Button
+					type="submit"
+					on:click={() => {
+						isopen = false;
+					}}>Continue</Button
+				>
 			</Dialog.Footer>
 		</Dialog.Content>
 	</Dialog.Root>

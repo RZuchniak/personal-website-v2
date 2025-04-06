@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
-	import { Vector3 } from 'three';
-	import { PI } from 'three/tsl';
 	import CssObject from './CssObject.svelte';
 	import { Spring } from 'svelte/motion';
 	import ProjectDescription from './ProjectDescription.svelte';
