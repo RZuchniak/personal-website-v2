@@ -12,9 +12,9 @@
 	let isopen = $state(true);
 </script>
 
-<div id="css-renderer-target" bind:this={element} />
+<div id="css-renderer-target" bind:this={element} class="z-10" />
 
-<div id="main">
+<div id="main" class="aspect-auto h-screen w-screen">
 	<Dialog.Root open={isopen}>
 		<Dialog.Overlay class="bg-black/100"></Dialog.Overlay>
 		<Dialog.Content class="sm:max-w-[425px]">

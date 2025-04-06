@@ -5,21 +5,27 @@
 	}: { projectName?: string; projectDescription?: string } = $props();
 </script>
 
-<div class="sci-fi-fade h-120 w-[40vw]">
-	<div class="flex items-center justify-center">
+<div class="sci-fi-fade flex items-center justify-center sm:h-[55vh] sm:w-[40vw]">
+	<div class="flex h-full w-full items-center justify-center">
 		<div
 			class="relative h-full w-full overflow-hidden rounded-lg border border-white/20 bg-gray-900"
 		>
 			<!-- Main Content -->
-			<div class="relative flex h-120 w-full flex-col overflow-hidden p-4">
+			<div class="relative flex h-full w-full flex-col overflow-hidden sm:p-[4vh] md:p-6">
 				<!-- Minimal title -->
-				<h1 class="w-full p-3 text-center text-3xl font-light tracking-wider text-white">
+				<h1
+					class="h-fit w-full text-center font-light tracking-wider text-white sm:p-[1vh] sm:pt-0 sm:text-[1.5vw] md:p-3 md:text-3xl"
+				>
 					{projectName}
 				</h1>
 
 				<!-- Description container -->
-				<div class="flex h-full items-center justify-center rounded-md border border-white/10 p-6">
-					<p class="max-w-md text-center text-lg leading-relaxed text-white/70">
+				<div
+					class="flex h-full items-center justify-center rounded-md border border-white/10 sm:p-4 md:p-6"
+				>
+					<p
+						class="sm:text-clamp(0.25rem,0.5vw,0.5rem) max-w-md text-center text-[1vw] leading-relaxed text-white/70 md:text-lg"
+					>
 						{projectDescription}
 					</p>
 				</div>
