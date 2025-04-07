@@ -2,11 +2,13 @@
 	import CameraControl from '../lib/CameraControls';
 	import type CC from 'camera-controls';
 	import { T, useTask, useThrelte } from '@threlte/core';
-	import { interactivity, Stars } from '@threlte/extras';
+	import { interactivity, OrbitControls, Stars } from '@threlte/extras';
 	import { PerspectiveCamera } from 'three';
 	import { loadModels } from '../lib/render';
 	import { CSS2DRenderer } from 'three/examples/jsm/Addons.js';
 	import Planet from './Planet.svelte';
+	import ProjectDescription from './ProjectDescription.svelte';
+	import CssObject from './CssObject.svelte';
 
 	let { element }: { element: HTMLElement } = $props();
 
@@ -57,41 +59,38 @@
 
 	let rotation = $state(0);
 
-	useTask(
-		(delta) => {
-			controls.setPosition(
-				4 * pointer.current.x + globalPosition.x,
-				4 * pointer.current.y + globalPosition.y,
-				globalPosition.z,
-				true
-			);
-			controls.setTarget(
-				4 * pointer.current.x + globalPosition.x,
-				4 * pointer.current.y + globalPosition.y,
-				0,
-				true
-			);
-			if (controls.update(delta)) {
-				invalidate();
+	useTask((delta) => {
+		controls.setPosition(
+			4 * pointer.current.x + globalPosition.x,
+			4 * pointer.current.y + globalPosition.y,
+			globalPosition.z,
+			true
+		);
+		controls.setTarget(
+			4 * pointer.current.x + globalPosition.x,
+			4 * pointer.current.y + globalPosition.y,
+			0,
+			true
+		);
+		if (controls.update(delta)) {
+			invalidate();
+		}
+		rotation += delta / 4;
+		if (rotation > Math.PI * 2) {
+			rotation = 0;
+		}
+		if (zooming) {
+			timer += delta;
+			if (timer > 0.85) {
+				timer = 0;
+				zooming = false;
+				zoomed = !zoomed;
+				if (zoomed) display = true;
 			}
-			rotation += delta / 4;
-			if (rotation > Math.PI * 2) {
-				rotation = 0;
-			}
-			if (zooming) {
-				timer += delta;
-				if (timer > 0.85) {
-					timer = 0;
-					zooming = false;
-					zoomed = !zoomed;
-					if (zoomed) display = true;
-				}
-			}
-		},
-		{ autoInvalidate: false }
-	);
+		}
+	});
 
-	const cssRenderer = new CSS2DRenderer({ element });
+	const cssRenderer = $derived(new CSS2DRenderer({ element }));
 
 	$effect(() => {
 		cssRenderer.setSize($size.width, $size.height);
@@ -161,7 +160,7 @@
 	{rotationToHeight}
 	{texture}
 	projectName="MOUND"
-	projectDescription="Developed for HacktheHill, Mound is a peer-to-peer distributed file sharing system. Upon connecting to a network, any files uploaded are automatically chunked and shared with all peers, which allows for robust downloads that do not rely on a single server, meaning in the event of a disconnection, the file can still be downloaded from other peers.
+	projectDescription="Developed for Hack the Hill, Mound is a peer-to-peer distributed file sharing system. Upon connecting to a network, any files uploaded are automatically chunked and shared with all peers, which allows for robust downloads that do not rely on a single server, meaning in the event of a disconnection, the file can still be downloaded from other peers.
 	I helped to develop the Electron front end, and helped to connect it to the cli being run as a child process through an IPC connection."
 	{image}
 ></Planet>
@@ -178,7 +177,6 @@
 	{image}
 	projectName="GRAPHICS ENGINE"
 	projectDescription="A graphics engine built entirely in Rust and leveraging the wgpu library. "
-
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 

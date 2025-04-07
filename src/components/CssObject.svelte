@@ -14,7 +14,14 @@
 	let element: HTMLElement | undefined = $state();
 </script>
 
-<div bind:this={element} class="inline-flex justify-center">
+<div
+	bind:this={element}
+	style:pointerevents={pointerEvents ? 'auto' : 'none !important'}
+	style:will-change="transform"
+	style:pointer-events="auto"
+	style:user-select="text"
+	class="inline-flex justify-center"
+>
 	{@render content?.()}
 </div>
 
