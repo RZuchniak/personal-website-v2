@@ -148,6 +148,8 @@
 	{texture}
 	projectName="MOSAIC"
 	projectDescription="Based off of r/Place, Mosaic allows users to place individual tiles on a board to slowly create art. Built using React, along with Socket.io and PostgreSQL for the back-end"
+	github="https://github.com/rzuchniak/mosaic"
+	website="https://mosaic.robertzuchniak.com/"
 	{image}
 ></Planet>
 

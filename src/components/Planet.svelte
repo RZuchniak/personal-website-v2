@@ -20,7 +20,9 @@
 		position,
 		image,
 		projectName = undefined,
-		projectDescription = undefined
+		projectDescription = undefined,
+		github,
+		website
 	}: {
 		rotation: number;
 		zoomed: boolean;
@@ -33,6 +35,8 @@
 		image: string;
 		projectName?: string;
 		projectDescription?: string;
+		github?: string;
+		website?: string;
 	} = $props();
 
 	let scale = new Spring(inputScale);
@@ -89,7 +93,7 @@
 <CssObject center={[0.5, 0.5]} position={[position[0] + 50, position[1], position[2]]}>
 	{#snippet content()}
 		{#if display}
-			<ProjectDescription {projectName} {projectDescription} />
+			<ProjectDescription {projectName} {projectDescription} {github} {website} />
 		{/if}
 	{/snippet}
 </CssObject>

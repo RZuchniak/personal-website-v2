@@ -18,8 +18,6 @@
 	bind:this={element}
 	style:pointerevents={pointerEvents ? 'auto' : 'none !important'}
 	style:will-change="transform"
-	style:pointer-events="auto"
-	style:user-select="text"
 	class="inline-flex justify-center"
 >
 	{@render content?.()}
