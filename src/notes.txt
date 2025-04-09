@@ -1,8 +1,7 @@
-- custom links with images
-- startup modal
 - mobile support
 - gsap intro
 - switch out planets
+- add floating tools
 
 Projects:
     Mosaic

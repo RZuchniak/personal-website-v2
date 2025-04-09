@@ -14,7 +14,6 @@
 
 	let zoomed = $state(false);
 	let zooming = $state(false);
-	let display = $state(false);
 	let timer = $state(0);
 
 	const globalPosition = $state({
@@ -34,7 +33,10 @@
 	const { pointer } = interactivity();
 
 	let models = loadModels();
-	const texture = models.jupiterTexture;
+	const jupiterTexture = models.jupiterTexture;
+	const marsTexture = models.marsTexture;
+	const neptuneTexture = models.neptuneTexture;
+	const makemakeTexture = models.makemakeTexture;
 	const image = models.image;
 
 	const viewPlanet = (location: [number, number, number]) => {
@@ -49,7 +51,6 @@
 			globalPosition.y = 0;
 			globalPosition.z = 400;
 			zooming = true;
-			display = false;
 		}
 	};
 
@@ -85,7 +86,6 @@
 				timer = 0;
 				zooming = false;
 				zoomed = !zoomed;
-				if (zoomed) display = true;
 			}
 		}
 	});
@@ -132,7 +132,7 @@
 	{zooming}
 	{viewPlanet}
 	{rotationToHeight}
-	{texture}
+	texture={marsTexture}
 	projectName="PACE"
 	projectDescription="Pace is a first person puzzle game that sees the player solving jigsaw puzzles on an abandoned space station. Built entirely in Godot, I was able to implement a custom portal system similar to that of Portal 1, allowing for seamless teleportation."
 	{image}
@@ -140,12 +140,12 @@
 
 <Planet
 	position={[-120, 50, -50]}
-	rotation={rotation * 4}
+	rotation={rotation * 1}
 	{zoomed}
 	{zooming}
 	{viewPlanet}
 	{rotationToHeight}
-	{texture}
+	texture={jupiterTexture}
 	projectName="MOSAIC"
 	projectDescription="Based off of r/Place, Mosaic allows users to place individual tiles on a board to slowly create art. Built using React, along with Socket.io and PostgreSQL for the back-end"
 	github="https://github.com/rzuchniak/mosaic"
@@ -160,7 +160,7 @@
 	{zooming}
 	{viewPlanet}
 	{rotationToHeight}
-	{texture}
+	texture={neptuneTexture}
 	projectName="MOUND"
 	projectDescription="Developed for Hack the Hill, Mound is a peer-to-peer distributed file sharing system. Upon connecting to a network, any files uploaded are automatically chunked and shared with all peers, which allows for robust downloads that do not rely on a single server, meaning in the event of a disconnection, the file can still be downloaded from other peers.
 	I helped to develop the Electron front end, and helped to connect it to the cli being run as a child process through an IPC connection."
@@ -169,13 +169,13 @@
 
 <Planet
 	position={[125, 40, 60]}
-	rotation={rotation * 4}
+	rotation={rotation * -2}
 	{zoomed}
 	{zooming}
 	scale={1.2}
 	{viewPlanet}
 	{rotationToHeight}
-	{texture}
+	texture={makemakeTexture}
 	{image}
 	projectName="GRAPHICS ENGINE"
 	projectDescription="A graphics engine built entirely in Rust and leveraging the wgpu library. "
