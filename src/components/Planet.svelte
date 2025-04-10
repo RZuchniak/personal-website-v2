@@ -79,17 +79,6 @@
 			{/if}
 		{/snippet}
 	</CssObject>
-	{#if tools}
-		{#each tools as tool, index}
-			<Tool
-				{rotation}
-				{hover}
-				{rotationToHeight}
-				image={tool}
-				position={(Math.PI * 2 * index) / tools.length}
-			/>
-		{/each}
-	{/if}
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if display}
@@ -102,6 +91,18 @@
 		<T.MeshStandardMaterial map={$texture} roughness={0.8} metalness={0.1} bumpScale={0.05} />
 	{/if}
 </T.Mesh>
+{#if tools}
+	{#each tools as tool, index}
+		<Tool
+			{rotation}
+			{hover}
+			{rotationToHeight}
+			image={tool}
+			{position}
+			offset={index / tools.length}
+		/>
+	{/each}
+{/if}
 <CssObject center={[0.5, 0.5]} position={[position[0] + 50, position[1], position[2]]}>
 	{#snippet content()}
 		{#if display}

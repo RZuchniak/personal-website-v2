@@ -54,7 +54,7 @@
 	};
 
 	const rotationToHeight = (rotation: number) => {
-		return Math.sin(rotation) * 25;
+		return Math.sin(rotation) * 27;
 	};
 
 	let rotation = $state(0);
@@ -134,7 +134,7 @@
 	texture={marsTexture}
 	projectName="PACE"
 	projectDescription="Pace is a first person puzzle game that sees the player solving jigsaw puzzles on an abandoned space station. Built entirely in Godot, I was able to implement a custom portal system similar to that of Portal 1, allowing for seamless teleportation."
-	tools={['svelte', 'rust', 'svelte', 'rust']}
+	tools={['svelte', 'rust']}
 ></Planet>
 
 <Planet
