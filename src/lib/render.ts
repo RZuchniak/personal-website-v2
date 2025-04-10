@@ -1,5 +1,4 @@
 import { useLoader } from '@threlte/core';
-import image from '../favicon.png';
 import * as THREE from 'three';
 
 export function loadModels() {
@@ -13,6 +12,5 @@ export function loadModels() {
         jupiterTexture,
         marsTexture,
         makemakeTexture,
-        image
     }
 }

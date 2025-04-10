@@ -1,6 +1,5 @@
 - mobile support
 - gsap intro
-- switch out planets
 - add floating tools
 
 Projects:

@@ -5,10 +5,12 @@
 	import ProjectDescription from './ProjectDescription.svelte';
 	import type { Texture } from 'three';
 	import type { AsyncWritable } from '@threlte/core';
-	import whirl from './whirl_screenshot.png';
 	import Preview from './Preview.svelte';
 	import TypeWriter from 'svelte-typewriter';
 	import Tool from './Tool.svelte';
+
+	type Tooltype = 'svelte' | 'rust' | 'react';
+
 	let {
 		rotation,
 		zoomed,
@@ -18,7 +20,7 @@
 		rotationToHeight,
 		texture,
 		position,
-		image,
+		tools,
 		projectName = undefined,
 		projectDescription = undefined,
 		github,
@@ -32,7 +34,7 @@
 		rotationToHeight: (rotation: number) => number;
 		texture: AsyncWritable<Texture>;
 		position: [number, number, number];
-		image: string;
+		tools?: Tooltype[];
 		projectName?: string;
 		projectDescription?: string;
 		github?: string;
@@ -77,7 +79,17 @@
 			{/if}
 		{/snippet}
 	</CssObject>
-	<Tool {rotation} {hover} {rotationToHeight} {image} />
+	{#if tools}
+		{#each tools as tool, index}
+			<Tool
+				{rotation}
+				{hover}
+				{rotationToHeight}
+				image={tool}
+				position={(Math.PI * 2 * index) / tools.length}
+			/>
+		{/each}
+	{/if}
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if display}
