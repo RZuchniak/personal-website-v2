@@ -134,7 +134,8 @@
 	texture={marsTexture}
 	projectName="PACE"
 	projectDescription="Pace is a first person puzzle game that sees the player solving jigsaw puzzles on an abandoned space station. Built entirely in Godot, I was able to implement a custom portal system similar to that of Portal 1, allowing for seamless teleportation."
-	tools={['svelte', 'rust']}
+	tools={['godot']}
+	gif="gifs/pace.gif"
 ></Planet>
 
 <Planet
@@ -149,6 +150,8 @@
 	projectDescription="Based off of r/Place, Mosaic allows users to place individual tiles on a board to slowly create art. Built using React, along with Socket.io and PostgreSQL for the back-end"
 	github="https://github.com/rzuchniak/mosaic"
 	website="https://mosaic.robertzuchniak.com/"
+	gif="gifs/mosaic.gif"
+	tools={['react']}
 ></Planet>
 
 <Planet
@@ -162,6 +165,8 @@
 	projectName="MOUND"
 	projectDescription="Developed for Hack the Hill, Mound is a peer-to-peer distributed file sharing system. Upon connecting to a network, any files uploaded are automatically chunked and shared with all peers, which allows for robust downloads that do not rely on a single server, meaning in the event of a disconnection, the file can still be downloaded from other peers.
 	I helped to develop the Electron front end, and helped to connect it to the cli being run as a child process through an IPC connection."
+	tools={['rust', 'svelte']}
+	gif="gifs/mound.gif"
 ></Planet>
 
 <Planet
@@ -175,6 +180,7 @@
 	texture={makemakeTexture}
 	projectName="GRAPHICS ENGINE"
 	projectDescription="A graphics engine built entirely in Rust and leveraging the wgpu library. "
+	tools={['wgsl', 'rust']}
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 

@@ -9,7 +9,7 @@
 	import TypeWriter from 'svelte-typewriter';
 	import Tool from './Tool.svelte';
 
-	type Tooltype = 'svelte' | 'rust' | 'react';
+	type Tooltype = 'svelte' | 'rust' | 'react' | 'godot' | 'wgsl';
 
 	let {
 		rotation,
@@ -24,7 +24,8 @@
 		projectName = undefined,
 		projectDescription = undefined,
 		github,
-		website
+		website,
+		gif
 	}: {
 		rotation: number;
 		zoomed: boolean;
@@ -39,6 +40,7 @@
 		projectDescription?: string;
 		github?: string;
 		website?: string;
+		gif?: string;
 	} = $props();
 
 	let scale = new Spring(inputScale);
@@ -82,7 +84,7 @@
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if display}
-				<Preview />
+				<Preview {gif} />
 			{/if}
 		{/snippet}
 	</CssObject>

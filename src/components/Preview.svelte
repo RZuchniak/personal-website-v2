@@ -1,10 +1,12 @@
 <script>
-	import image from './template.gif';
+	let { gif } = $props();
 </script>
 
-<div class="vignette-container flex h-1/2 w-1/2 justify-center justify-items-center">
-	<img src={image} class="source-image animate-fade-in h-full w-full object-cover" />
-	<div class="scanline-effect pointer-events-none absolute inset-0"></div>
+<div class="vignette-container h-screen-5/6 w-screen-5/6 flex items-center justify-center">
+	<div class="relative h-full w-full">
+		<img src={gif} class="source-image animate-fade-in h-max w-max object-cover" />
+		<div class="scanline-effect pointer-events-none absolute inset-0"></div>
+	</div>
 </div>
 
 <style>
@@ -38,7 +40,7 @@
 		mask-image: radial-gradient(
 			ellipse,
 			black 0%,
-			rgba(0, 0, 0, 0.7) calc(var(--gradient-expand) - 30%),
+			rgba(0, 0, 0, 0.75) calc(var(--gradient-expand) - 30%),
 			transparent var(--gradient-expand)
 		);
 		animation: expand-gradient 0.5s cubic-bezier(0.1, 0, 0.8, 1) forwards;

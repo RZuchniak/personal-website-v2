@@ -46,7 +46,7 @@
 	center={[0.5, 0.5]}
 	position={[
 		position[0] + rotationToHeight(rotation + Math.PI * offset * 2),
-		rotationToHeight(Math.PI / 2 + rotation + Math.PI * offset * 2),
+		rotationToHeight(Math.PI / 2 + rotation + Math.PI * offset * 2) + position[1],
 		position[2]
 	]}
 >
