@@ -73,6 +73,13 @@
 	<CssObject center={[0.5, 0.5]} position={[0, 0, 0]}>
 		{#snippet content()}
 			{#if hover}
+				<img src="click.png" class="fade-in h-1/4 w-1/4" />
+			{/if}
+		{/snippet}
+	</CssObject>
+	<CssObject center={[0.5, 0.5]} position={[0, 25, 0]}>
+		{#snippet content()}
+			{#if hover}
 				<TypeWriter keepCursorOnFinish>
 					<h class="flex items-center text-center text-2xl font-bold break-words">
 						{projectName || 'MOSAIC'}
@@ -112,3 +119,18 @@
 		{/if}
 	{/snippet}
 </CssObject>
+
+<style>
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.fade-in {
+		animation: fadeIn 1s ease-in infinite alternate;
+	}
+</style>
