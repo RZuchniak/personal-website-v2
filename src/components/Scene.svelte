@@ -178,9 +178,10 @@
 	{viewPlanet}
 	{rotationToHeight}
 	texture={makemakeTexture}
-	projectName="GRAPHICS ENGINE"
-	projectDescription="A graphics engine built entirely in Rust and leveraging the wgpu library. "
+	projectName="RENDERER"
+	projectDescription="An object renderer built in Rust, leveraging the wgpu library and wgsl. "
 	tools={['wgsl', 'rust']}
+	gif="gifs/renderer.gif"
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
