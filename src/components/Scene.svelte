@@ -136,6 +136,8 @@
 	projectDescription="Pace is a first person puzzle game that sees the player solving jigsaw puzzles on an abandoned space station. Built entirely in Godot, I was able to implement a custom portal system similar to that of Portal 1, allowing for seamless teleportation."
 	tools={['godot']}
 	gif="gifs/pace.gif"
+	github="https://github.com/vasiltop/pace"
+	website="https://munost.itch.io/pace"
 ></Planet>
 
 <Planet
@@ -167,6 +169,8 @@
 	I helped to develop the Electron front end, and helped to connect it to the cli being run as a child process through an IPC connection."
 	tools={['rust', 'svelte']}
 	gif="gifs/mound.gif"
+	github="https://github.com/orgs/mound-p2p/repositories"
+	website="https://devpost.com/software/mound"
 ></Planet>
 
 <Planet
@@ -182,7 +186,18 @@
 	projectDescription="An object renderer built in Rust, leveraging the wgpu library and wgsl. "
 	tools={['wgsl', 'rust']}
 	gif="gifs/renderer.gif"
+	github="https://github.com/RZuchniak/Renderer"
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
 <Stars radius={750} factor={35} />
+
+<svelte:window
+	on:deviceorientation={(event) => {
+		if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
+			globalPosition.x = event.alpha;
+			globalPosition.y = event.beta;
+			globalPosition.z = event.gamma;
+		}
+	}}
+/>

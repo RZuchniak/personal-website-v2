@@ -28,7 +28,7 @@
 			</Dialog.Header>
 			<Dialog.Footer>
 				<Button type="button" on:click={() => (window.location.href = 'https://google.com')}
-					>Try other site</Button
+					>Alternate Portfolio</Button
 				>
 				<Button
 					type="submit"

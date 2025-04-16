@@ -3,7 +3,7 @@
 </script>
 
 <div class="vignette-container h-screen-5/6 w-screen-5/6 flex items-center justify-center">
-	<div class="relative h-full w-full">
+	<div class="relative h-full w-full sm:max-h-[85vh] sm:max-w-[85vh]">
 		<img src={gif} class="source-image animate-fade-in h-max w-max object-cover" />
 		<div class="scanline-effect pointer-events-none absolute inset-0"></div>
 	</div>
