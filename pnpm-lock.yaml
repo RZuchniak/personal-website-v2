@@ -33,9 +33,18 @@ importers:
       '@fontsource/fira-mono':
         specifier: ^5.0.0
         version: 5.2.5
+      '@fontsource/orbitron':
+        specifier: ^5.0.0
+        version: 5.2.8
+      '@fontsource/share-tech-mono':
+        specifier: ^5.0.0
+        version: 5.2.7
       '@neoconfetti/svelte':
         specifier: ^2.0.0
         version: 2.2.2(svelte@5.25.2)
+      '@ngrok/ngrok':
+        specifier: ^1.7.0
+        version: 1.7.0
       '@sveltejs/adapter-auto':
         specifier: ^4.0.0
         version: 4.0.0(@sveltejs/kit@2.20.2(@sveltejs/vite-plugin-svelte@5.0.3(svelte@5.25.2)(vite@6.2.2(jiti@2.4.2)(lightningcss@1.29.2)))(svelte@5.25.2)(vite@6.2.2(jiti@2.4.2)(lightningcss@1.29.2)))
@@ -324,6 +333,12 @@ packages:
   '@fontsource/fira-mono@5.2.5':
     resolution: {integrity: sha512-rujrs+J+w2Nmqd6zsNQTzT7eYLKrSQWdF7SuAdjjXVs+Si06Ag6etOYFmF3Mzb0NufmEIPCDUS2ppt6hxX+SLg==}
 
+  '@fontsource/orbitron@5.2.8':
+    resolution: {integrity: sha512-ruzrDl5vnqNykk5DZWY0Ezj4aeFZSbCnwJTc/98ojNJHSsHhlhT2r7rwQrA5sptmF8JtB8TQTAvlfRvcV28RPw==}
+
+  '@fontsource/share-tech-mono@5.2.7':
+    resolution: {integrity: sha512-1JBJ6CU9u5av8aFEUOGOJkq60/IEVVOZDCmiU8X3i0skk0Pp69GngDwlBUHaTZa4G6pbF1UDrC+Fm7XSckW6TQ==}
+
   '@formatjs/ecma402-abstract@2.3.4':
     resolution: {integrity: sha512-qrycXDeaORzIqNhBOx0btnhpD1c+/qFIHAN9znofuMJX6QBwtbrmlpWfD4oiUUD2vJUOIYFA/gYtg2KAMGG7sA==}
 
@@ -387,6 +402,91 @@ packages:
     peerDependencies:
       svelte: ^3.0.0 || ^4.0.0 || ^5.0.0
 
+  '@ngrok/ngrok-android-arm64@1.7.0':
+    resolution: {integrity: sha512-8tco3ID6noSaNy+CMS7ewqPoIkIM6XO5COCzsUp3Wv3XEbMSyn65RN6cflX2JdqLfUCHcMyD0ahr9IEiHwqmbQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [android]
+
+  '@ngrok/ngrok-darwin-arm64@1.7.0':
+    resolution: {integrity: sha512-+dmJSOzSO+MNDVrPOca2yYDP1W3KfP4qOlAkarIeFRIfqonQwq3QCBmcR7HAlZocLsSqEwyG6KP4RRvAuT0WGQ==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@ngrok/ngrok-darwin-universal@1.7.0':
+    resolution: {integrity: sha512-fDEfewyE2pWGFBhOSwQZObeHUkc65U1l+3HIgSOe094TMHsqmyJD0KTCgW9KSn0VP4OvDZbAISi1T3nvqgZYhQ==}
+    engines: {node: '>= 10'}
+    os: [darwin]
+
+  '@ngrok/ngrok-darwin-x64@1.7.0':
+    resolution: {integrity: sha512-+fwMi5uHd9G8BS42MMa9ye6exI5lwTcjUO6Ut497Vu0qgLONdVRenRqnEePV+Q3KtQR7NjqkMnomVfkr9MBjtw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@ngrok/ngrok-freebsd-x64@1.7.0':
+    resolution: {integrity: sha512-2OGgbrjy3yLRrqAz5N6hlUKIWIXSpR5RjQa2chtZMsSbszQ6c9dI+uVQfOKAeo05tHMUgrYAZ7FocC+ig0dzdQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@ngrok/ngrok-linux-arm-gnueabihf@1.7.0':
+    resolution: {integrity: sha512-SN9YIfEQiR9xN90QVNvdgvAemqMLoFVSeTWZs779145hQMhvF9Qd9rnWi6J+2uNNK10OczdV1oc/nq1es7u/3g==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+
+  '@ngrok/ngrok-linux-arm64-gnu@1.7.0':
+    resolution: {integrity: sha512-KDMgzPKFU2kbpVSaA2RZBBia5IPdJEe063YlyVFnSMJmPYWCUnMwdybBsucXfV9u1Lw/ZjKTKotIlbTWGn3HGw==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@ngrok/ngrok-linux-arm64-musl@1.7.0':
+    resolution: {integrity: sha512-e66vUdVrBlQ0lT9ZdamB4U604zt5Gualt8/WVcUGzbu8s5LajWd6g/mzZCUjK4UepjvMpfgmCp1/+rX7Rk8d5A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@ngrok/ngrok-linux-x64-gnu@1.7.0':
+    resolution: {integrity: sha512-M6gF0DyOEFqXLfWxObfL3bxYZ4+PnKBHuyLVaqNfFN9Y5utY2mdPOn5422Ppbk4XoIK5/YkuhRqPJl/9FivKEw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@ngrok/ngrok-linux-x64-musl@1.7.0':
+    resolution: {integrity: sha512-4Ijm0dKeoyzZTMaYxR2EiNjtlK81ebflg/WYIO1XtleFrVy4UJEGnxtxEidYoT4BfCqi4uvXiK2Mx216xXKvog==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@ngrok/ngrok-win32-arm64-msvc@1.7.0':
+    resolution: {integrity: sha512-u7qyWIJI2/YG1HTBnHwUR1+Z2tyGfAsUAItJK/+N1G0FeWJhIWQvSIFJHlaPy4oW1Dc8mSDBX9qvVsiQgLaRFg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@ngrok/ngrok-win32-ia32-msvc@1.7.0':
+    resolution: {integrity: sha512-/UdYUsLNv/Q8j9YJsyIfq/jLCoD8WP+NidouucTUzSoDtmOsXBBT3itLrmPiZTEdEgKiFYLuC1Zon8XQQvbVLA==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@ngrok/ngrok-win32-x64-msvc@1.7.0':
+    resolution: {integrity: sha512-UFJg/duEWzZlLkEs61Gz6/5nYhGaKI62I8dvUGdBR3NCtIMagehnFaFxmnXZldyHmCM8U0aCIFNpWRaKcrQkoA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@ngrok/ngrok@1.7.0':
+    resolution: {integrity: sha512-P06o9TpxrJbiRbHQkiwy/rUrlXRupc+Z8KT4MiJfmcdWxvIdzjCaJOdnNkcOTs6DMyzIOefG5tvk/HLdtjqr0g==}
+    engines: {node: '>= 10'}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -436,51 +536,61 @@ packages:
     resolution: {integrity: sha512-bvXVU42mOVcF4le6XSjscdXjqx8okv4n5vmwgzcmtvFdifQ5U4dXFYaCB87namDRKlUL9ybVtLQ9ztnawaSzvg==}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.36.0':
     resolution: {integrity: sha512-JFIQrDJYrxOnyDQGYkqnNBtjDwTgbasdbUiQvcU8JmGDfValfH1lNpng+4FWlhaVIR4KPkeddYjsVVbmJYvDcg==}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.36.0':
     resolution: {integrity: sha512-KqjYVh3oM1bj//5X7k79PSCZ6CvaVzb7Qs7VMWS+SlWB5M8p3FqufLP9VNp4CazJ0CsPDLwVD9r3vX7Ci4J56A==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.36.0':
     resolution: {integrity: sha512-QiGnhScND+mAAtfHqeT+cB1S9yFnNQ/EwCg5yE3MzoaZZnIV0RV9O5alJAoJKX/sBONVKeZdMfO8QSaWEygMhw==}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-linux-loongarch64-gnu@4.36.0':
     resolution: {integrity: sha512-1ZPyEDWF8phd4FQtTzMh8FQwqzvIjLsl6/84gzUxnMNFBtExBtpL51H67mV9xipuxl1AEAerRBgBwFNpkw8+Lg==}
     cpu: [loong64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.36.0':
     resolution: {integrity: sha512-VMPMEIUpPFKpPI9GZMhJrtu8rxnp6mJR3ZzQPykq4xc2GmdHj3Q4cA+7avMyegXy4n1v+Qynr9fR88BmyO74tg==}
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.36.0':
     resolution: {integrity: sha512-ttE6ayb/kHwNRJGYLpuAvB7SMtOeQnVXEIpMtAvx3kepFQeowVED0n1K9nAdraHUPJ5hydEMxBpIR7o4nrm8uA==}
     cpu: [riscv64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.36.0':
     resolution: {integrity: sha512-4a5gf2jpS0AIe7uBjxDeUMNcFmaRTbNv7NxI5xOCs4lhzsVyGR/0qBXduPnoWf6dGC365saTiwag8hP1imTgag==}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.36.0':
     resolution: {integrity: sha512-5KtoW8UWmwFKQ96aQL3LlRXX16IMwyzMq/jSSVIIyAANiE1doaQsx/KRyhAvpHlPjPiSU/AYX/8m+lQ9VToxFQ==}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.36.0':
     resolution: {integrity: sha512-sycrYZPrv2ag4OCvaN5js+f01eoZ2U+RmT5as8vhxiFz+kxwlHrsxOwKPSA8WyS+Wc6Epid9QeI/IkQ9NkgYyQ==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.36.0':
     resolution: {integrity: sha512-qbqt4N7tokFwwSVlWDsjfoHgviS3n/vZ8LK0h1uLG9TYIRuUTJC88E1xb3LM2iqZ/WTqNQjYrtmtGmrmmawB6A==}
@@ -572,24 +682,28 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@tailwindcss/oxide-linux-arm64-musl@4.0.15':
     resolution: {integrity: sha512-342GVnhH/6PkVgKtEzvNVuQ4D+Q7B7qplvuH20Cfz9qEtydG6IQczTZ5IT4JPlh931MG1NUCVxg+CIorr1WJyw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@tailwindcss/oxide-linux-x64-gnu@4.0.15':
     resolution: {integrity: sha512-g76GxlKH124RuGqacCEFc2nbzRl7bBrlC8qDQMiUABkiifDRHOIUjgKbLNG4RuR9hQAD/MKsqZ7A8L08zsoBrw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@tailwindcss/oxide-linux-x64-musl@4.0.15':
     resolution: {integrity: sha512-Gg/Y1XrKEvKpq6WeNt2h8rMIKOBj/W3mNa5NMvkQgMC7iO0+UNLrYmt6zgZufht66HozNpn+tJMbbkZ5a3LczA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@tailwindcss/oxide-win32-arm64-msvc@4.0.15':
     resolution: {integrity: sha512-7QtSSJwYZ7ZK1phVgcNZpuf7c7gaCj8Wb0xjliligT5qCGCp79OV2n3SJummVZdw4fbTNKUOYMO7m1GinppZyA==}
@@ -1090,24 +1204,28 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.29.2:
     resolution: {integrity: sha512-Q64eM1bPlOOUgxFmoPUefqzY1yV3ctFPE6d/Vt7WzLW4rKTv7MyYNky+FWxRpLkNASTnKQUaiMJ87zNODIrrKQ==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.29.2:
     resolution: {integrity: sha512-0v6idDCPG6epLXtBH/RPkHvYx74CVziHo6TMYga8O2EiQApnUPZsbR9nFNrg2cgBzk1AYqEd95TlrsL7nYABQg==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.29.2:
     resolution: {integrity: sha512-rMpz2yawkgGT8RULc5S4WiZopVMOFWjiItBT7aSfDX4NQav6M44rhn5hjtkKzB+wMTRlLLqxkeYEtQ3dd9696w==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.29.2:
     resolution: {integrity: sha512-nL7zRW6evGQqYVu/bKGK+zShyz8OVzsCotFgc7judbt6wnB2KbiKKJwBE4SGoDBQ1O94RjW4asrCjQL4i8Fhbw==}
@@ -1762,6 +1880,10 @@ snapshots:
 
   '@fontsource/fira-mono@5.2.5': {}
 
+  '@fontsource/orbitron@5.2.8': {}
+
+  '@fontsource/share-tech-mono@5.2.7': {}
+
   '@formatjs/ecma402-abstract@2.3.4':
     dependencies:
       '@formatjs/fast-memoize': 2.2.7
@@ -1830,6 +1952,61 @@ snapshots:
   '@neoconfetti/svelte@2.2.2(svelte@5.25.2)':
     dependencies:
       svelte: 5.25.2
+
+  '@ngrok/ngrok-android-arm64@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-darwin-arm64@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-darwin-universal@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-darwin-x64@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-freebsd-x64@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-linux-arm-gnueabihf@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-linux-arm64-gnu@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-linux-arm64-musl@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-linux-x64-gnu@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-linux-x64-musl@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-win32-arm64-msvc@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-win32-ia32-msvc@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok-win32-x64-msvc@1.7.0':
+    optional: true
+
+  '@ngrok/ngrok@1.7.0':
+    optionalDependencies:
+      '@ngrok/ngrok-android-arm64': 1.7.0
+      '@ngrok/ngrok-darwin-arm64': 1.7.0
+      '@ngrok/ngrok-darwin-universal': 1.7.0
+      '@ngrok/ngrok-darwin-x64': 1.7.0
+      '@ngrok/ngrok-freebsd-x64': 1.7.0
+      '@ngrok/ngrok-linux-arm-gnueabihf': 1.7.0
+      '@ngrok/ngrok-linux-arm64-gnu': 1.7.0
+      '@ngrok/ngrok-linux-arm64-musl': 1.7.0
+      '@ngrok/ngrok-linux-x64-gnu': 1.7.0
+      '@ngrok/ngrok-linux-x64-musl': 1.7.0
+      '@ngrok/ngrok-win32-arm64-msvc': 1.7.0
+      '@ngrok/ngrok-win32-ia32-msvc': 1.7.0
+      '@ngrok/ngrok-win32-x64-msvc': 1.7.0
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

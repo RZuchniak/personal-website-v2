@@ -1,0 +1,19 @@
+import type { IntersectionEvent } from '../../types.js';
+type Handler = (event: IntersectionEvent<PointerEvent>) => void;
+interface Props {
+    onpointerdownFront?: Handler;
+    onpointerdownBack?: Handler;
+    onpointeroverFront?: Handler;
+    onpointeroverBack?: Handler;
+    onpointeroutFront?: Handler;
+    onpointeroutBack?: Handler;
+    onpointerenterFront?: Handler;
+    onpointerenterBack?: Handler;
+    onpointerleaveFront?: Handler;
+    onpointerleaveBack?: Handler;
+    onpointermoveFront?: Handler;
+    onpointermoveBack?: Handler;
+}
+declare const OverlappingScene: import("svelte").Component<Props, {}, "">;
+type OverlappingScene = ReturnType<typeof OverlappingScene>;
+export default OverlappingScene;

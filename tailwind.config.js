@@ -55,7 +55,8 @@ const config = {
 				sm: "calc(var(--radius) - 4px)"
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+				display: ["Orbitron", "system-ui", "sans-serif"],
+				sans: ['"Share Tech Mono"', "ui-monospace", ...fontFamily.mono]
 			}
 		}
 	},

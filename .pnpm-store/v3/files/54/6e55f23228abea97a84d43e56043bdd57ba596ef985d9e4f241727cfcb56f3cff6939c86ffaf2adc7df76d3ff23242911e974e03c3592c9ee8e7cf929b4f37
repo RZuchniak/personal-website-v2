@@ -1,0 +1,17 @@
+import type { IntersectionEvent } from '../../types.js';
+type Handler = (event: IntersectionEvent<PointerEvent>) => void;
+interface Props {
+    onpointerdownChild?: Handler;
+    onpointerdownParent?: Handler;
+    onpointeroverChild?: Handler;
+    onpointeroverParent?: Handler;
+    onpointeroutChild?: Handler;
+    onpointeroutParent?: Handler;
+    onpointerleaveChild?: Handler;
+    onpointerleaveParent?: Handler;
+    onpointerenterChild?: Handler;
+    onpointerenterParent?: Handler;
+}
+declare const PropagationScene: import("svelte").Component<Props, {}, "">;
+type PropagationScene = ReturnType<typeof PropagationScene>;
+export default PropagationScene;

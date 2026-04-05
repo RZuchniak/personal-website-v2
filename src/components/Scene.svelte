@@ -4,13 +4,18 @@
 	import { T, useTask, useThrelte } from '@threlte/core';
 	import { interactivity, OrbitControls, Stars } from '@threlte/extras';
 	import { PerspectiveCamera } from 'three';
+	import { orientationPermissionNeeded } from '../lib/deviceMotion';
+	import { preloadProjectMedia } from '../lib/preloadAssets';
 	import { loadModels } from '../lib/render';
 	import { CSS2DRenderer } from 'three/examples/jsm/Addons.js';
 	import Planet from './Planet.svelte';
 	import ProjectDescription from './ProjectDescription.svelte';
 	import CssObject from './CssObject.svelte';
 
-	let { element }: { element: HTMLElement } = $props();
+	let {
+		element,
+		motionSteeringActive = false
+	}: { element: HTMLElement; motionSteeringActive?: boolean } = $props();
 
 	let zoomed = $state(false);
 	let zooming = $state(false);
@@ -31,6 +36,10 @@
 	controls.setPosition(globalPosition.x, globalPosition.y, globalPosition.z, false);
 
 	const { pointer } = interactivity();
+
+	$effect(() => {
+		preloadProjectMedia();
+	});
 
 	let models = loadModels();
 	const jupiterTexture = models.jupiterTexture;
@@ -59,16 +68,120 @@
 
 	let rotation = $state(0);
 
+	let motionTarget = $state({ x: 0, y: 0 });
+	let motionSmooth = $state({ x: 0, y: 0 });
+
+	/** Raw device angles at “neutral” — offsets are computed relative to this. */
+	let orientationBaseline: { beta: number; gamma: number } | null = null;
+
+	function displayAngleDegrees(): number {
+		const so = typeof screen !== 'undefined' ? screen.orientation : undefined;
+		if (so?.angle != null && !Number.isNaN(so.angle)) return so.angle;
+		if (typeof window !== 'undefined' && typeof window.orientation === 'number') {
+			return window.orientation;
+		}
+		return 0;
+	}
+
+	/**
+	 * Map device beta/gamma into screen-relative tilt.
+	 * In landscape, axes are rotated so “steering wheel” roll vs “top toward you” pitch map to X/Y.
+	 */
+	function orientationBucket(angleDeg: number): 0 | 90 | 180 | 270 {
+		const a = ((angleDeg % 360) + 360) % 360;
+		if (a >= 45 && a < 135) return 90;
+		if (a >= 135 && a < 225) return 180;
+		if (a >= 225 && a < 315) return 270;
+		return 0;
+	}
+
+	function deviceToScreenTilt(beta: number, gamma: number, angleDeg: number): { x: number; y: number } {
+		const a = orientationBucket(angleDeg);
+		const pitchFromUpright = beta - 90;
+
+		if (a === 90) {
+			return { x: pitchFromUpright, y: -gamma };
+		}
+		if (a === 270) {
+			return { x: -pitchFromUpright, y: gamma };
+		}
+		if (a === 180) {
+			return { x: -gamma, y: -pitchFromUpright };
+		}
+		return { x: gamma, y: pitchFromUpright };
+	}
+
+	$effect(() => {
+		const resetBaseline = () => {
+			orientationBaseline = null;
+		};
+		screen.orientation?.addEventListener?.('change', resetBaseline);
+		window.addEventListener('orientationchange', resetBaseline);
+		return () => {
+			screen.orientation?.removeEventListener?.('change', resetBaseline);
+			window.removeEventListener('orientationchange', resetBaseline);
+		};
+	});
+
+	$effect(() => {
+		if (!motionSteeringActive && orientationPermissionNeeded()) {
+			orientationBaseline = null;
+			motionTarget = { x: 0, y: 0 };
+			motionSmooth = { x: 0, y: 0 };
+		}
+	});
+
+	function onDeviceOrientation(event: DeviceOrientationEvent) {
+		const needPerm = orientationPermissionNeeded();
+		if (needPerm && !motionSteeringActive) {
+			orientationBaseline = null;
+			motionTarget = { x: 0, y: 0 };
+			return;
+		}
+		if (event.gamma === null || event.beta === null) return;
+
+		const beta = event.beta;
+		const gamma = event.gamma;
+		const angle = displayAngleDegrees();
+
+		if (orientationBaseline === null) {
+			orientationBaseline = { beta, gamma };
+			motionTarget = { x: 0, y: 0 };
+			return;
+		}
+
+		const cur = deviceToScreenTilt(beta, gamma, angle);
+		const base = deviceToScreenTilt(orientationBaseline.beta, orientationBaseline.gamma, angle);
+		let dx = cur.x - base.x;
+		let dy = cur.y - base.y;
+
+		dx = Math.max(-55, Math.min(55, dx));
+		dy = Math.max(-55, Math.min(55, dy));
+
+		/* Map view: more sensitive. Zoomed on a planet + description: gentler so text stays readable. */
+		const gainX = zoomed ? 20 : 52;
+		const gainY = zoomed ? 16 : 44;
+		motionTarget.x = -(dx / 55) * gainX;
+		motionTarget.y = (dy / 55) * gainY;
+	}
+
 	useTask((delta) => {
+		const k = 1 - Math.pow(0.001, delta);
+		motionSmooth.x += (motionTarget.x - motionSmooth.x) * k;
+		motionSmooth.y += (motionTarget.y - motionSmooth.y) * k;
+
+		const mx = motionSmooth.x;
+		const my = motionSmooth.y;
+
 		controls.setPosition(
-			4 * pointer.current.x + globalPosition.x,
-			4 * pointer.current.y + globalPosition.y,
+			4 * pointer.current.x + globalPosition.x + mx,
+			4 * pointer.current.y + globalPosition.y + my,
 			globalPosition.z,
 			true
 		);
 		controls.setTarget(
-			4 * pointer.current.x + globalPosition.x,
-			4 * pointer.current.y + globalPosition.y,
+			4 * pointer.current.x + globalPosition.x + mx,
+			4 * pointer.current.y + globalPosition.y + my,
 			0,
 			true
 		);
@@ -190,14 +303,6 @@
 ></Planet>
 <T.DirectionalLight position={[0, 50, 100]} intensity={1} />
 
-<Stars radius={750} factor={35} />
+<Stars radius={750} factor={52} />
 
-<svelte:window
-	on:deviceorientation={(event) => {
-		if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
-			globalPosition.x = event.alpha;
-			globalPosition.y = event.beta;
-			globalPosition.z = event.gamma;
-		}
-	}}
-/>
+<svelte:window on:deviceorientation={onDeviceOrientation} />

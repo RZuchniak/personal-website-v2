@@ -1,0 +1,23 @@
+import type { ThrelteContext } from '@threlte/core';
+import type { WebGLRenderer } from 'three';
+/**
+ * Workaround for @threlte/test bugs #1, #5:
+ * The dom element is detached so clientWidth/Height are 0. Appending it to the
+ * container with explicit pixel dimensions gives it real layout. Must wait for
+ * ResizeObserver to fire.
+ */
+export declare const setupDom: (context: ThrelteContext<WebGLRenderer>, container: HTMLElement) => Promise<void>;
+/**
+ * Dispatch a pointer event at position (x, y) relative to the target element.
+ * offsetX/offsetY are read-only computed properties that Chromium computes
+ * unreliably for synthetic events (@threlte/test bug #6), so we override them.
+ */
+export declare const pointer: (target: HTMLElement, type: string, x?: number, y?: number) => void;
+/**
+ * Dispatch a wheel event at position (x, y) relative to the target element.
+ */
+export declare const wheel: (target: HTMLElement, x?: number, y?: number, deltaY?: number) => void;
+/**
+ * Wait for a requestAnimationFrame to fire (needed for throttled pointermove).
+ */
+export declare const nextFrame: () => Promise<void>;

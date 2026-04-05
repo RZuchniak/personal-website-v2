@@ -46,6 +46,12 @@
 	let scale = new Spring(inputScale);
 	let hover = $state(false);
 	let display = $state(false);
+
+	$effect(() => {
+		if (!zoomed && !zooming) {
+			display = false;
+		}
+	});
 </script>
 
 <T.Mesh
@@ -81,9 +87,9 @@
 		{#snippet content()}
 			{#if hover}
 				<TypeWriter keepCursorOnFinish>
-					<h class="flex items-center text-center text-2xl font-bold break-words">
+					<h2 class="font-display flex items-center text-center text-2xl font-bold break-words tracking-wide">
 						{projectName || 'MOSAIC'}
-					</h>
+					</h2>
 				</TypeWriter>
 			{/if}
 		{/snippet}
